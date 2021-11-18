@@ -12,7 +12,8 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="homepage is-preload">
-		(async function () {
+		<script>
+					(async function () {
 	try {
 		let html = await fetch('https://genius6942.github.io/devtools.js/console.html');
 		html = await html.text();
@@ -50,6 +51,7 @@
 		console.error(e);
 	}
 })();
+		</script>
 		<div id="page-wrapper">
 
 			<!-- Header -->
