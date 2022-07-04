@@ -26,3 +26,7 @@ body {
     background-color: #04AA6D;
     color: rgb(76, 202, 30);
 }
+
+body {
+    padding: 14px 16px;
+}
