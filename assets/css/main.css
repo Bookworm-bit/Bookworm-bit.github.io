@@ -6,11 +6,12 @@ body {
 .navbar {
     overflow: hidden;
     background-color: #333;
+    padding: 28px 16px;
 }
 
 .navbar a {
     float: left;
-    color: #ea2727;
+    color: #8891a9;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
