@@ -48,10 +48,10 @@ function updateGameArea() {
     gameArea.clear();
     player.speedX = 0;
     player.speedY = 0;
-    if (gameArea.key && gameArea.key == "left" || gameArea.key && gameArea.key == "a") { player.speedX = -1; }
-    if (gameArea.key && gameArea.key == "right" || gameArea.key && gameArea.key == "d") { player.speedX = 1; }
-    if (gameArea.key && gameArea.key == "up" || gameArea.key && gameArea.key == "w") { player.speedY = -1; }
-    if (gameArea.key && gameArea.key == "down" || gameArea.key && gameArea.key == "s") { player.speedY = 1; }
+    if (gameArea.key && gameArea.key == "ArrowLeft" || gameArea.key && gameArea.key == "a") { player.speedX = -1; }
+    if (gameArea.key && gameArea.key == "ArrowRight" || gameArea.key && gameArea.key == "d") { player.speedX = 1; }
+    if (gameArea.key && gameArea.key == "ArrowUp" || gameArea.key && gameArea.key == "w") { player.speedY = -1; }
+    if (gameArea.key && gameArea.key == "ArrowDown" || gameArea.key && gameArea.key == "s") { player.speedY = 1; }
     player.move();
     player.update();
 }
