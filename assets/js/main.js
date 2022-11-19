@@ -64,7 +64,7 @@ function updateGameArea() {
     player.update();
     door.update();
     player.newPos();
-    door.newPos();
+    // door.newPos();
 }
 
 function moveUp() {
