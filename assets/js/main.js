@@ -14,10 +14,11 @@ var gameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function(e) {
-            gameArea.key = e.key;
+            gameArea.keys = (gameArea.keys || []);
+            gameArea.keys[e.key] = true;
         })
         window.addEventListener('keyup', function(e) {
-            gameArea.key = false;
+            gameArea.keys[e.key] = false;
         })
     },
     clear: function() {
@@ -48,10 +49,10 @@ function updateGameArea() {
     gameArea.clear();
     player.speedX = 0;
     player.speedY = 0;
-    if (gameArea.key && gameArea.key == "ArrowLeft" || gameArea.key && gameArea.key == "a") { player.speedX = -1; }
-    if (gameArea.key && gameArea.key == "ArrowRight" || gameArea.key && gameArea.key == "d") { player.speedX = 1; }
-    if (gameArea.key && gameArea.key == "ArrowUp" || gameArea.key && gameArea.key == "w") { player.speedY = -1; }
-    if (gameArea.key && gameArea.key == "ArrowDown" || gameArea.key && gameArea.key == "s") { player.speedY = 1; }
+    if (gameArea.keys && gameArea.keys["ArrowLeft"] || gameArea.keys && gameArea.keys["a"]) { player.speedX = -1; }
+    if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 1; }
+    if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -1; }
+    if (gameArea.keys && gameArea.keys["ArrowDown"] || gameArea.keys && gameArea.keys["s"]) { player.speedY = 1; }
     player.move();
     player.update();
 }
