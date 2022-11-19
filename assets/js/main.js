@@ -14,9 +14,9 @@ var gameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function(e) {
-            gameArea.key = e.key;
+            gameArea.key = e.keyCode;
         })
-        window.addEventListener('keydown', function(e) {
+        window.addEventListener('keyup', function(e) {
             gameArea.key = false;
         })
     },
@@ -29,60 +29,29 @@ function component(width, height, color, x, y) {
     this.gamearea = gameArea;
     this.width = width;
     this.height = height;
-    this.x = x;
-    this.y = y;
     this.speedX = 0;
     this.speedY = 0;
+    this.x = x;
+    this.y = y;
     this.update = function() {
         ctx = gameArea.context;
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-    };
+    }
     this.move = function() {
         this.x += this.speedX;
-        this.x += this.speedY;
-    };
+        this.y += this.speedY;
+    }
 }
 
 function updateGameArea() {
     gameArea.clear();
-    if (gameArea.key == "w") {
-        moveUp();
-    }
-    if (gameArea.key == "s") {
-        moveDown();
-    }
-    if (gameArea.key == "a") {
-        moveLeft();
-    }
-    if (gameArea.key == "d") {
-        moveRight();
-    }
-    player.update();
-    door.update();
-    player.move();
-    // door.newPos();
-}
-
-function moveUp() {
-    player.speedY -= 1;
-}
-
-function moveDown() {
-    player.speedY += 1;
-}
-
-function moveLeft() {
-    player.speedX -= 1;
-}
-
-function moveRight() {
-    player.speedX += 1;
-}
-
-function stopMovement() {
     player.speedX = 0;
-    door.speedX = 0;
     player.speedY = 0;
-    door.speedY = 0;
+    if (gameArea.key && gameArea.key == 37) { player.speedX = -1; }
+    if (gameArea.key && gameArea.key == 39) { player.speedX = 1; }
+    if (gameArea.key && gameArea.key == 38) { player.speedY = -1; }
+    if (gameArea.key && gameArea.key == 40) { player.speedY = 1; }
+    player.move();
+    player.update();
 }
