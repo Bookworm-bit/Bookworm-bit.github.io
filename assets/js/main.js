@@ -2,7 +2,7 @@ var player;
 var door;
 
 function startGame() {
-    player = new component(30, 30, "red", 10, 120);
+    player = new component(30, 30, "blue", 10, 120);
     door = new component(30, 10, "red", 10, 90);
     gameArea.start();
 }
