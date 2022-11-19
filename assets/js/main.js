@@ -3,7 +3,7 @@ var door;
 
 function startGame() {
     player = new component(30, 30, "red", 10, 120);
-    door = new component(30, 10, "blue", 100, 100);
+    door = new component(30, 10, "red", 10, 90);
     gameArea.start();
 }
 
@@ -47,16 +47,16 @@ function component(width, height, color, x, y) {
 
 function updateGameArea() {
     gameArea.clear();
-    if (gameArea.key == "up") {
+    if (gameArea.key == "w") {
         moveUp();
     }
-    if (gameArea.key == "down") {
+    if (gameArea.key == "s") {
         moveDown();
     }
-    if (gameArea.key == "left") {
+    if (gameArea.key == "a") {
         moveLeft();
     }
-    if (gameArea.key == "right") {
+    if (gameArea.key == "d") {
         moveRight();
     }
     player.update();
