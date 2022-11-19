@@ -2,7 +2,7 @@ var player;
 var door;
 
 function startGame() {
-    player = new component(30, 30, "red", 10, 120);
+    player = new(30, 30, "red", 10, 120);
     door = new component(30, 10, "red", 10, 90);
     gameArea.start();
 }
@@ -27,24 +27,22 @@ var gameArea = {
     }
 }
 
-class component {
-    constructor(width, height, color, x, y) {
-        this.width = width;
-        this.height = height;
-        this.x = x;
-        this.y = y;
-        this.speedX = 0;
-        this.speedY = 0;
-        this.update = function() {
-            ctx = gameArea.context;
-            ctx.fillStyle = color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        };
-        this.move = function() {
-            this.x += this.speedX;
-            this.x += this.speedY;
-        };
-    }
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.update = function() {
+        ctx = gameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    };
+    this.move = function() {
+        this.x += this.speedX;
+        this.x += this.speedY;
+    };
 }
 
 function updateGameArea() {
