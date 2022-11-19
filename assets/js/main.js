@@ -53,6 +53,8 @@ function updateGameArea() {
     if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 1; }
     if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -1; }
     if (gameArea.keys && gameArea.keys["ArrowDown"] || gameArea.keys && gameArea.keys["s"]) { player.speedY = 1; }
-    player.move();
+    if (player.x < gameArea.canvas.width - player.width && player.y < gameArea.canvas.height - player.height && player.x > 0 && player.y > 0) {
+        player.move();
+    }
     player.update();
 }
