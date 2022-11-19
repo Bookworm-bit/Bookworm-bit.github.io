@@ -1,10 +1,8 @@
 var player;
-var door;
 
 function startGame() {
-    player = new component(30, 30, "blue", 10, 120);
-    door = new component(30, 10, "red", 10, 90);
     gameArea.start();
+    player = new component(30, 30, "blue", 10, 120);
 }
 
 var gameArea = {
@@ -28,6 +26,7 @@ var gameArea = {
 }
 
 function component(width, height, color, x, y) {
+    this.gamearea = gameArea;
     this.width = width;
     this.height = height;
     this.x = x;
@@ -61,7 +60,7 @@ function updateGameArea() {
     }
     player.update();
     door.update();
-    player.newPos();
+    player.move();
     // door.newPos();
 }
 
