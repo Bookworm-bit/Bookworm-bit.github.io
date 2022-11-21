@@ -9,7 +9,7 @@ var gameArea = {
     canvas: document.createElement("canvas"),
     start: function() {
         this.canvas.width = 1200;
-        this.canvas.height = 740;
+        this.canvas.height = 540;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
@@ -53,7 +53,7 @@ function updateGameArea() {
     if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 3; }
     if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -3; }
     if (gameArea.keys && gameArea.keys["ArrowDown"] || gameArea.keys && gameArea.keys["s"]) { player.speedY = 3; }
-    if (player.x + player.speedX > 0 && player.y + player.speedY > 0 && player.x + player.speedX < 1200 - player.width && player.y + player.speedY < 740 - player.height) {
+    if (player.x + player.speedX > 0 && player.y + player.speedY > 0 && player.x + player.speedX < 1200 - player.width && player.y + player.speedY < 540 - player.height) {
         player.move();
     }
     player.update();
