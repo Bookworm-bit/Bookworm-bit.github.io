@@ -44,7 +44,7 @@ function component(width, height, color, x, y, type) {
     this.speedY = 0;
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
-    this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[0] - this.centerX) / (this.gamearea.mouseCoords[1] - this.centerY));
+    // this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[0] - this.centerX) / (this.gamearea.mouseCoords[1] - this.centerY));
     this.x = x;
     this.y = y;
     this.update = function() {
@@ -55,6 +55,11 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(0);
+        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+        ctx.restore();
     }
     this.move = function() {
         this.x += this.speedX;
@@ -66,6 +71,7 @@ function updateGameArea() {
     gameArea.clear();
     player.speedX = 0;
     player.speedY = 0;
+    player.angle += 1 * Math.PI / 180;
     if (gameArea.keys && gameArea.keys["ArrowLeft"] || gameArea.keys && gameArea.keys["a"]) { player.speedX = -3; }
     if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 3; }
     if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -3; }
