@@ -47,6 +47,7 @@ function component(width, height, color, x, y, type) {
     // this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[0] - this.centerX) / (this.gamearea.mouseCoords[1] - this.centerY));
     this.x = x;
     this.y = y;
+    this.angle = 0;
     this.update = function() {
         ctx = gameArea.context;
         if (type == "image") {
@@ -57,8 +58,8 @@ function component(width, height, color, x, y, type) {
         }
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(0);
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        ctx.rotate(this.angle);
+        ctx.drawImage(this.image, this.width/-2, this.height/-2, this.width, this.height);
         ctx.restore();
     }
     this.move = function() {
