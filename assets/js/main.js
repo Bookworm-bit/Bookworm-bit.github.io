@@ -2,7 +2,7 @@ var player;
 
 function startGame() {
     gameArea.start();
-    player = new component(30, 30, "blue", 10, 120);
+    player = new component(30, 30, "player.png", 10, 120, "image");
 }
 
 var gameArea = {
@@ -26,18 +26,30 @@ var gameArea = {
     }
 }
 
-function component(width, height, color, x, y) {
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
     this.gamearea = gameArea;
     this.width = width;
     this.height = height;
     this.speedX = 0;
     this.speedY = 0;
+    this.centerX = this.x + this.width / 2;
+    this.centerY = this.y + this.height / 2;
+    this.mouseRelativeAngle = 0; // arctan((mouseX - centerX) / (mouseY - centerY))
     this.x = x;
     this.y = y;
     this.update = function() {
         ctx = gameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        if (type == "image") {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
     }
     this.move = function() {
         this.x += this.speedX;
