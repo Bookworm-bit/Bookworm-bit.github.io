@@ -1,12 +1,3 @@
-gameArea.start();
-const player = new Player({
-    x: 10,
-    y: 120,
-    width: 30,
-    height: 30,
-    color: "blue",
-});
-
 // create a canvas
 const canvas = document.createElement("canvas");
 
@@ -53,13 +44,14 @@ class Player {
             if (repeat) return;
 
             const down = type === "keydown" ? true : false;
-            if (key === "ArrowLeft") {
+
+            if (key === "arrowleft") {
                 this.keys.left = down;
-            } else if (key === "ArrowRight") {
+            } else if (key === "arrowright") {
                 this.keys.right = down;
-            } else if (key === "ArrowUp") {
+            } else if (key === "arrowup") {
                 this.keys.up = down;
-            } else if (key === "ArrowDown") {
+            } else if (key === "arrowdown") {
                 this.keys.down = down;
             }
         };
@@ -77,14 +69,26 @@ class Player {
         this.speedX = 0;
         this.speedY = 0;
 
-        if (this.keys.left) this.speedX -= this.speed;
-        if (this.keys.right) this.speedX += this.speed;
-        if (this.keys.up) this.speedY -= this.speed;
-        if (this.keys.down) this.speedY += this.speed;
+        if (this.keys.left) this.speedX -= 1;
+        if (this.keys.right) this.speedX += 1;
+        if (this.keys.up) this.speedY -= 1;
+        if (this.keys.down) this.speedY += 1;
+
+        if (this.speedX !== 0 && this.speedY !== 0) {
+            this.speedX *= 1 / Math.SQRT2;
+            this.speedY *= 1 / Math.SQRT2;
+        }
+
+        this.speedX *= this.speed;
+        this.speedY *= this.speed;
 
         // update player from vel
         this.x += this.speedX;
         this.y += this.speedY;
+
+        // limit player x and y
+        this.x = Math.max(0, Math.min(this.x, canvas.width - this.width));
+        this.y = Math.max(0, Math.min(this.y, canvas.height - this.height));
     }
 }
 
@@ -92,18 +96,18 @@ const loop = () => {
     // clear
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    // only let player update if its too far
-    if (
-        player.x < canvas.width - player.width &&
-        player.y < canvas.height - player.height &&
-        player.x > 0 &&
-        player.y > 0
-    ) {
-        player.update();
-    }
+    player.update();
     player.render();
 
     requestAnimationFrame(loop);
 };
+
+const player = new Player({
+    x: 10,
+    y: 120,
+    width: 30,
+    height: 30,
+    color: "blue",
+});
 
 requestAnimationFrame(loop);
