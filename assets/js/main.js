@@ -63,6 +63,7 @@ function component(width, height, color, x, y, type) {
         ctx.restore();
     }
     this.move = function() {
+        this.angle += this.angle * Math.PI/180;
         this.x += this.speedX;
         this.y += this.speedY;
     }
@@ -72,7 +73,6 @@ function updateGameArea() {
     gameArea.clear();
     player.speedX = 0;
     player.speedY = 0;
-    player.angle += 1 * Math.PI / 180;
     if (gameArea.keys && gameArea.keys["ArrowLeft"] || gameArea.keys && gameArea.keys["a"]) { player.speedX = -3; }
     if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 3; }
     if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -3; }
