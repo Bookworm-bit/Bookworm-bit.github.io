@@ -20,6 +20,11 @@ var gameArea = {
         window.addEventListener('keyup', function(e) {
             gameArea.keys[e.key] = false;
         })
+        window.addEventListener('mousemove', function(e) {
+            gameArea.mouseCoords = (gameArea.mouseCoords || []);
+            gameArea.mouseCoords[0] = e.screenX;
+            gameArea.mouseCoords[1] = e.screenY;
+        })
     },
     clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -39,7 +44,7 @@ function component(width, height, color, x, y, type) {
     this.speedY = 0;
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
-    this.mouseRelativeAngle = 0; // arctan((mouseX - centerX) / (mouseY - centerY))
+    this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[0] - this.centerX) / (this.gamearea.mouseCoords[1] - this.centerY));
     this.x = x;
     this.y = y;
     this.update = function() {
