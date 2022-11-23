@@ -44,7 +44,7 @@ function component(width, height, color, x, y, type) {
     this.speedY = 0;
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
-    this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[0] - this.centerX) / (this.gamearea.mouseCoords[1] - this.centerY));
+    this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[1] - this.centerY) / (this.gamearea.mouseCoords[0] - this.centerX));
     this.x = x;
     this.y = y;
     this.angle = 0;
