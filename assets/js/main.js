@@ -59,11 +59,11 @@ function component(width, height, color, x, y, type) {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
-        ctx.drawImage(this.image, this.width/-2, this.height/-2, this.width, this.height);
+        ctx.drawImage(this.image, this.width / -2, this.height / -2, this.width, this.height);
         ctx.restore();
     }
     this.move = function() {
-        this.angle += this.angle * Math.PI/180;
+        this.angle += this.angle * Math.PI / 180;
         this.x += this.speedX;
         this.y += this.speedY;
     }
@@ -73,10 +73,10 @@ function updateGameArea() {
     gameArea.clear();
     player.speedX = 0;
     player.speedY = 0;
-    if (gameArea.keys && gameArea.keys["ArrowLeft"] || gameArea.keys && gameArea.keys["a"]) { player.speedX = -3; }
-    if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX = 3; }
-    if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY = -3; }
-    if (gameArea.keys && gameArea.keys["ArrowDown"] || gameArea.keys && gameArea.keys["s"]) { player.speedY = 3; }
+    if (gameArea.keys && gameArea.keys["ArrowLeft"] || gameArea.keys && gameArea.keys["a"]) { player.speedX -= 3; }
+    if (gameArea.keys && gameArea.keys["ArrowRight"] || gameArea.keys && gameArea.keys["d"]) { player.speedX += 3; }
+    if (gameArea.keys && gameArea.keys["ArrowUp"] || gameArea.keys && gameArea.keys["w"]) { player.speedY -= 3; }
+    if (gameArea.keys && gameArea.keys["ArrowDown"] || gameArea.keys && gameArea.keys["s"]) { player.speedY += 3; }
     if (player.x + player.speedX > 0 && player.y + player.speedY > 0 && player.x + player.speedX < 1200 - player.width && player.y + player.speedY < 540 - player.height) {
         player.move();
     }
