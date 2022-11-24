@@ -19,7 +19,7 @@ var gameArea = {
         })
         window.addEventListener('keyup', function(e) {
             gameArea.keys[e.key] = false;
-        })    
+        })
         window.addEventListener('mousemove', function(e) {
             gameArea.mouseCoords = (gameArea.mouseCoords || []);
             gameArea.mouseCoords[0] = e.clientX;
@@ -50,12 +50,12 @@ function component(width, height, color, x, y, type) {
     this.angle = 0;
     this.update = function() {
         ctx = gameArea.context;
-        // if (type == "image") {
-        //     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        // } else {
-        //     ctx.fillStyle = color;
-        //     ctx.fillRect(this.x, this.y, this.width, this.height);
-        // }
+        if (type == "image") {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.mouseRelativeAngle);
