@@ -24,6 +24,8 @@ var gameArea = {
             gameArea.mouseCoords = (gameArea.mouseCoords || []);
             gameArea.mouseCoords[0] = e.clientX;
             gameArea.mouseCoords[1] = e.clientY;
+
+            this.requestAnimationFrame(updateGameArea);
         })
     },
     clear: function() {
@@ -44,7 +46,7 @@ function component(width, height, color, x, y, type) {
     this.speedY = 0;
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
-    this.mouseRelativeAngle = Math.atan((this.gamearea.mouseCoords[1] - this.centerY) / (this.gamearea.mouseCoords[0] - this.centerX));
+    this.mouseRelativeAngle = Math.atan2(this.gamearea.mouseCoords[1] - this.centerY, this.gamearea.mouseCoords[0] - this.centerX);
     this.x = x;
     this.y = y;
     this.angle = 0;
@@ -56,6 +58,7 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
+        ctx.clear();
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.mouseRelativeAngle);
