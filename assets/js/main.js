@@ -59,7 +59,7 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
-        ctx.clear();
+        gameArea.clear();
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.mouseRelativeAngle);
