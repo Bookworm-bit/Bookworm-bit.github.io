@@ -7,6 +7,7 @@ function startGame() {
 
 var gameArea = {
     canvas: document.createElement("canvas"),
+    mouseCoords: [0, 0],
     start: function() {
         this.canvas.width = 1200;
         this.canvas.height = 540;
